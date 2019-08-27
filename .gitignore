@@ -4,7 +4,7 @@ __pycache__/
 dist
 build
 regreplacer.egg-info
-regreplacer.spec
+replacer.spec
 tests/tmp/*
 !tests/tmp/dummy.txt
 **_trial_temp*/
