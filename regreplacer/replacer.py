@@ -15,7 +15,7 @@ class RegReplacer(object):
         parser = argparse.ArgumentParser()
         parser.add_argument('-v', '--version', action='version', version=self.meta.get_version())
         parser.add_argument('-t', '--template', dest='template', help='Register(.reg) template to use as template',
-                            type=self.check_input1, default=".", required=True)
+                            type=self.check_input1, default=".", required=False)
         parser.add_argument('-r', '--replacement', dest='replacement', help='Json file with replacements',
                             type=self.check_input2, default=".")
         parser.add_argument('-o', '--output', dest='output', help='Output path',
@@ -69,4 +69,5 @@ class RegReplacer(object):
 
 if __name__ == "__main__":
     replacer = RegReplacer()
+    print(replacer.args)
     replacer.run()
