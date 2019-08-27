@@ -85,6 +85,11 @@ class RegReplacer(object):
         # print(register_data)
         return register_data
 
+    @staticmethod
+    def save_reg(reg_data, output_path):
+        with open(output_path, 'w', encoding='utf-16-le') as reg_file:
+            reg_file.write(reg_data)
+
     def run(self):
         start_time = time.time()
         print("\nExecution complete!")
@@ -93,7 +98,8 @@ class RegReplacer(object):
         ret_replacement = None
         if self.args.replacement != ".":
             ret_replacement = RegReplacer.load_json(self.args.replacement)
-        RegReplacer.find_replace(ret_template, ret_replacement)
+        ret_fixed_data = RegReplacer.find_replace(ret_template, ret_replacement)
+        RegReplacer.save_reg(ret_fixed_data, self.args.output)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
