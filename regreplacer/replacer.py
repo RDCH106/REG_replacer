@@ -18,8 +18,8 @@ class RegReplacer(object):
                             type=self.check_input1, default=".", required=True)
         parser.add_argument('-r', '--replacement', dest='replacement', help='Json file with replacements',
                             type=self.check_input2, default=".")
-        parser.add_argument('-o', '--output', dest='template', help='Output path',
-                            type=self.check_output, default=".")
+        parser.add_argument('-o', '--output', dest='output', help='Output path',
+                            type=self.check_output, default="./OUTPUT.reg")
 
         self.args = parser.parse_args()
 
