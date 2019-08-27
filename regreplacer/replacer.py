@@ -71,7 +71,8 @@ class RegReplacer(object):
     def load_reg(path):
         with open(path, 'r', encoding='utf-16-le') as reg_file:
             data = reg_file.read()
-            print(data)
+            # print(data)
+            return data
 
     def run(self):
         start_time = time.time()
