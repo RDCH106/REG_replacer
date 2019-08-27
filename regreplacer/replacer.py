@@ -88,11 +88,11 @@ class RegReplacer(object):
         start_time = time.time()
         print("\nExecution complete!")
         # TO-DO
-        ret_reg = RegReplacer.load_reg(self.args.template)
+        ret_template = RegReplacer.load_reg(self.args.template)
         ret_replacement = None
         if self.args.replacement != ".":
             ret_replacement = RegReplacer.load_json(self.args.replacement)
-        RegReplacer.find_replace(ret_reg, ret_replacement)
+        RegReplacer.find_replace(ret_template, ret_replacement)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
