@@ -75,13 +75,24 @@ class RegReplacer(object):
             # print(data)
             return data
 
+    @staticmethod
+    def find_replace(register_data, replacement_data):
+        for replacement in replacement_data:
+            if replacement[1] == "CURRENT_DIR":
+                replacement[1] = os.path.dirname(os.path.realpath(__file__))
+                replacement[1] += '\\'  # Add \ at the end of the path
+            register_data = register_data.replace(replacement[0].replace('\\', '\\\\'), replacement[1].replace('\\', '\\\\'))
+        print(register_data)
+
     def run(self):
         start_time = time.time()
         print("\nExecution complete!")
         # TO-DO
-        RegReplacer.load_reg(self.args.template)
+        ret_reg = RegReplacer.load_reg(self.args.template)
+        ret_replacement = None
         if self.args.replacement != ".":
-            RegReplacer.load_json(self.args.replacement)
+            ret_replacement = RegReplacer.load_json(self.args.replacement)
+        RegReplacer.find_replace(ret_reg, ret_replacement)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
