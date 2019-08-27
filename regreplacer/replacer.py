@@ -5,6 +5,7 @@ import argparse
 import os
 import pathlib
 import time
+import json
 
 
 class RegReplacer(object):
@@ -60,10 +61,18 @@ class RegReplacer(object):
             pathlib.Path(path).touch()  # Create empty file if path exists but not the file
         return RegReplacer.exists_file_or_path(path, extension)
 
+    @staticmethod
+    def load_json(path):
+        with open(path) as json_file:
+            data = json.load(json_file)["data"]
+            print(data)
+
     def run(self):
         start_time = time.time()
         print("\nExecution complete!")
         # TO-DO
+        if self.args.replacement != ".":
+            RegReplacer.load_json(self.args.replacement)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
