@@ -16,7 +16,7 @@ class RegReplacer(object):
         parser = argparse.ArgumentParser()
         parser.add_argument('-v', '--version', action='version', version=self.meta.get_version())
         parser.add_argument('-t', '--template', dest='template', help='Register(.reg) template to use as template',
-                            type=self.check_input1, default=".", required=False)
+                            type=self.check_input1, default=".", required=True)
         parser.add_argument('-r', '--replacement', dest='replacement', help='Json file with replacements',
                             type=self.check_input2, default=".")
         parser.add_argument('-o', '--output', dest='output', help='Output path',
@@ -67,10 +67,17 @@ class RegReplacer(object):
             data = json.load(json_file)["data"]
             print(data)
 
+    @staticmethod
+    def load_reg(path):
+        with open(path, 'r', encoding='utf-16-le') as reg_file:
+            data = reg_file.read()
+            print(data)
+
     def run(self):
         start_time = time.time()
         print("\nExecution complete!")
         # TO-DO
+        RegReplacer.load_reg(self.args.template)
         if self.args.replacement != ".":
             RegReplacer.load_json(self.args.replacement)
         print("--- %s seconds ---" % (time.time() - start_time))
