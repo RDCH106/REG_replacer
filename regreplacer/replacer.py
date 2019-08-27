@@ -21,6 +21,8 @@ class RegReplacer(object):
                             type=self.check_input2, default=".")
         parser.add_argument('-o', '--output', dest='output', help='Output path',
                             type=self.check_output, default="./OUTPUT.reg")
+        parser.add_argument('-e', '--execute', dest='execute', action='store_true',
+                            help='Execute generated output')
 
         self.args = parser.parse_args()
 
@@ -100,6 +102,9 @@ class RegReplacer(object):
             ret_replacement = RegReplacer.load_json(self.args.replacement)
         ret_fixed_data = RegReplacer.find_replace(ret_template, ret_replacement)
         RegReplacer.save_reg(ret_fixed_data, self.args.output)
+        if self.args.execute:
+            print("Applying " + self.args.output)
+            os.system("REG IMPORT " + self.args.output)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
