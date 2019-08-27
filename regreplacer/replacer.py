@@ -65,7 +65,8 @@ class RegReplacer(object):
     def load_json(path):
         with open(path) as json_file:
             data = json.load(json_file)["data"]
-            print(data)
+            # print(data)
+            return data
 
     @staticmethod
     def load_reg(path):
