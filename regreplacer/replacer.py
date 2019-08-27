@@ -82,7 +82,8 @@ class RegReplacer(object):
                 replacement[1] = os.path.dirname(os.path.realpath(__file__))
                 replacement[1] += '\\'  # Add \ at the end of the path
             register_data = register_data.replace(replacement[0].replace('\\', '\\\\'), replacement[1].replace('\\', '\\\\'))
-        print(register_data)
+        # print(register_data)
+        return register_data
 
     def run(self):
         start_time = time.time()
