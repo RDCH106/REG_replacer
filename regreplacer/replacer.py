@@ -87,5 +87,5 @@ class RegReplacer(object):
 
 if __name__ == "__main__":
     replacer = RegReplacer()
-    print(replacer.args)
+    # print(replacer.args)
     replacer.run()
